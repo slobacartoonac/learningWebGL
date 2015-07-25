@@ -107,18 +107,68 @@ var prolaz=0;
     function initBuffers() {
         triangleVertexPositionBuffer = gl.createBuffer();
         gl.bindBuffer(gl.ARRAY_BUFFER, triangleVertexPositionBuffer);
-        var vertices = [
-             0.0,  0.66,  0.0,
-            -0.66, -0.33,  0.0,
-             0.66, -0.33,  0.0,
-			 0.66, 0.33,  1.0
-        ];
+        var vertices =  [ 0.0, 0.0, -3.0,
+ 0.0, 1.0, 1.0,
+ -1.0, 0.0, 0.0,
+
+ -1.0, 0.0, 0.0,
+1.0, 0.0, 0.0,
+0.0, 1.0, 1.0,
+
+0.0, 1.0, 1.0,
+1.0, 0.0, 0.0,
+0.0, 0.0, -3.0,
+
+0.0, 0.0, -3.0,
+-1.0, 0.0, 0.0,
+1.0, 0.0, 0.0,
+
+ 0.0, 0.0, -1.0,
+ -1.0, 0.0, 0.0,
+ -3.0, 0.0, -1.0,
+
+ 0.0, 0.0, -1.0,
+ 1.0, 0.0, 0.0,
+ 3.0, 0.0, -1.0,
+
+ 0.5, 0.5,0.5,
+ 0.2, 0.1, -1.0,
+1.0, 1.0, 1.0,
+
+-0.5, 0.5,0.5,
+ -0.2, 0.1, -1.0,
+-1.0, 1.0, 1.0];
         gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(vertices), gl.STATIC_DRAW);
         triangleVertexPositionBuffer.itemSize = 3;
-        triangleVertexPositionBuffer.numItems = 4;
+        triangleVertexPositionBuffer.numItems = 24;
 		triangleVertexColorBuffer = gl.createBuffer();
 		gl.bindBuffer(gl.ARRAY_BUFFER, triangleVertexColorBuffer);
 		var colors = [
+			1.0, 0.0, 0.0, 1.0,
+			0.0, 1.0, 0.0, 1.0,
+			0.0, 0.0, 1.0, 1.0,
+			0.0, 0.0, 1.0, 1.0,
+			
+			1.0, 0.0, 0.0, 1.0,
+			0.0, 1.0, 0.0, 1.0,
+			0.0, 0.0, 1.0, 1.0,
+			0.0, 0.0, 1.0, 1.0,
+			
+			1.0, 0.0, 0.0, 1.0,
+			0.0, 1.0, 0.0, 1.0,
+			0.0, 0.0, 1.0, 1.0,
+			0.0, 0.0, 1.0, 1.0,
+			
+			1.0, 0.0, 0.0, 1.0,
+			0.0, 1.0, 0.0, 1.0,
+			0.0, 0.0, 1.0, 1.0,
+			0.0, 0.0, 1.0, 1.0,
+			
+			1.0, 0.0, 0.0, 1.0,
+			0.0, 1.0, 0.0, 1.0,
+			0.0, 0.0, 1.0, 1.0,
+			0.0, 0.0, 1.0, 1.0,
+			
 			1.0, 0.0, 0.0, 1.0,
 			0.0, 1.0, 0.0, 1.0,
 			0.0, 0.0, 1.0, 1.0,
@@ -126,7 +176,7 @@ var prolaz=0;
 		];
     gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(colors), gl.STATIC_DRAW);
     triangleVertexColorBuffer.itemSize = 4;
-    triangleVertexColorBuffer.numItems = 4;
+    triangleVertexColorBuffer.numItems = 24;
     }
 
 
@@ -139,12 +189,13 @@ var prolaz=0;
 
         mat4.identity(mvMatrix);
         
-        mat4.translate(mvMatrix, [x/120.0-2.2, -y/120.0+2.2, -5.0]);
-		mat4.rotate(mvMatrix,prolaz/30.0,[0.0,1.0,0.0]);
+        mat4.translate(mvMatrix,[ 0, 0, -8.0]);//[x/120.0-2.2, -y/120.0+2.2, -5.0]
+		mat4.rotate(mvMatrix,x/60.0,[0.0,1.0,0.0]);//prolaz/30
+		mat4.rotate(mvMatrix,y/60.0,[0.0,0.0,1.0]);
         gl.bindBuffer(gl.ARRAY_BUFFER, triangleVertexPositionBuffer);
         gl.vertexAttribPointer(shaderProgram.vertexPositionAttribute, triangleVertexPositionBuffer.itemSize, gl.FLOAT, false, 0, 0);
 		gl.bindBuffer(gl.ARRAY_BUFFER, triangleVertexColorBuffer);
 		gl.vertexAttribPointer(shaderProgram.vertexColorAttribute, triangleVertexColorBuffer.itemSize, gl.FLOAT, false, 0, 0);
         setMatrixUniforms();
-        gl.drawArrays(gl.TRIANGLE_STRIP, 0, triangleVertexPositionBuffer.numItems);
+        gl.drawArrays(gl.TRIANGLES, 0, triangleVertexPositionBuffer.numItems);
     }
