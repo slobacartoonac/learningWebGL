@@ -1,3 +1,33 @@
+document.onkeydown = checkKey;
+
+function checkKey(e) {
+
+    e = e || window.event;
+
+    if (e.keyCode === 38) {
+        alert("You pressed a key UP");
+    }
+    else if (e.keyCode === 40) {
+        alert("You pressed a key DOWN");
+    }
+    else if (e.keyCode === 37) {
+       alert("You pressed a key LEFT");
+    }
+    else if (e.keyCode === 39) {
+       alert("You pressed a key RIGHT");
+    }
+	else if (e.keyCode === 32) {
+       alert("You pressed a key SPACE");
+    }
+	else if (e.keyCode === 27) {
+       alert("You pressed a key ESC");
+    }
+
+}
+
+
+
+
 var x=250;
 var y=250;
 function webGLStart(kanvas) {
