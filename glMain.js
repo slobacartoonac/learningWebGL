@@ -1,14 +1,15 @@
 document.onkeydown = checkKey;
-
+var avionce=new RendableObject("avionce");
 function checkKey(e) {
 
     e = e || window.event;
 
     if (e.keyCode === 38) {
-        alert("You pressed a key UP");
+        document.getElementById("undertag").innerHTML =avionce.get();
     }
     else if (e.keyCode === 40) {
-        alert("You pressed a key DOWN");
+	var doleime=new FirmNamed("doleee");
+        document.getElementById("undertag").innerHTML =doleime.get();
     }
     else if (e.keyCode === 37) {
        alert("You pressed a key LEFT");
@@ -135,8 +136,8 @@ var prolaz=0;
     var triangleVertexPositionBuffer;
 	var triangleVertexColorBuffer;
     function initBuffers() {
-        triangleVertexPositionBuffer = gl.createBuffer();
-        gl.bindBuffer(gl.ARRAY_BUFFER, triangleVertexPositionBuffer);
+       // triangleVertexPositionBuffer = gl.createBuffer();
+       // gl.bindBuffer(gl.ARRAY_BUFFER, triangleVertexPositionBuffer);
         var vertices =  [ 0.0, 0.0, -3.0,
  0.0, 1.0, 1.0,
  -1.0, 0.0, 0.0,
@@ -168,11 +169,12 @@ var prolaz=0;
 -0.5, 0.5,0.5,
  -0.2, 0.1, -1.0,
 -1.0, 1.0, 1.0];
-        gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(vertices), gl.STATIC_DRAW);
-        triangleVertexPositionBuffer.itemSize = 3;
-        triangleVertexPositionBuffer.numItems = 24;
-		triangleVertexColorBuffer = gl.createBuffer();
-		gl.bindBuffer(gl.ARRAY_BUFFER, triangleVertexColorBuffer);
+       avionce.SetVertices(vertices);
+       // gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(vertices), gl.STATIC_DRAW);
+       // triangleVertexPositionBuffer.itemSize = 3;
+        //triangleVertexPositionBuffer.numItems = 24;
+		//triangleVertexColorBuffer = gl.createBuffer();
+		//gl.bindBuffer(gl.ARRAY_BUFFER, triangleVertexColorBuffer);
 		var colors = [
 			1.0, 0.0, 0.0, 1.0,
 			0.0, 1.0, 0.0, 1.0,
@@ -204,9 +206,10 @@ var prolaz=0;
 			0.0, 0.0, 1.0, 1.0,
 			0.0, 0.0, 1.0, 1.0
 		];
-    gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(colors), gl.STATIC_DRAW);
-    triangleVertexColorBuffer.itemSize = 4;
-    triangleVertexColorBuffer.numItems = 24;
+		avionce.SetColors(colors);
+   // gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(colors), gl.STATIC_DRAW);
+    //triangleVertexColorBuffer.itemSize = 4;
+   // triangleVertexColorBuffer.numItems = 24;
     }
 
 
@@ -222,10 +225,12 @@ var prolaz=0;
         mat4.translate(mvMatrix,[ 0, 0, -8.0]);//[x/120.0-2.2, -y/120.0+2.2, -5.0]
 		mat4.rotate(mvMatrix,x/60.0,[0.0,1.0,0.0]);//prolaz/30
 		mat4.rotate(mvMatrix,y/60.0,[0.0,0.0,1.0]);
-        gl.bindBuffer(gl.ARRAY_BUFFER, triangleVertexPositionBuffer);
-        gl.vertexAttribPointer(shaderProgram.vertexPositionAttribute, triangleVertexPositionBuffer.itemSize, gl.FLOAT, false, 0, 0);
-		gl.bindBuffer(gl.ARRAY_BUFFER, triangleVertexColorBuffer);
-		gl.vertexAttribPointer(shaderProgram.vertexColorAttribute, triangleVertexColorBuffer.itemSize, gl.FLOAT, false, 0, 0);
-        setMatrixUniforms();
-        gl.drawArrays(gl.TRIANGLES, 0, triangleVertexPositionBuffer.numItems);
+		setMatrixUniforms();
+		avionce.Draw();
+        //gl.bindBuffer(gl.ARRAY_BUFFER, triangleVertexPositionBuffer);
+        //gl.vertexAttribPointer(shaderProgram.vertexPositionAttribute, triangleVertexPositionBuffer.itemSize, gl.FLOAT, false, 0, 0);
+		//gl.bindBuffer(gl.ARRAY_BUFFER, triangleVertexColorBuffer);
+		//gl.vertexAttribPointer(shaderProgram.vertexColorAttribute, triangleVertexColorBuffer.itemSize, gl.FLOAT, false, 0, 0);
+        
+        //gl.drawArrays(gl.TRIANGLES, 0, triangleVertexPositionBuffer.numItems);
     }
