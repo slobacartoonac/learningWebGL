@@ -222,9 +222,19 @@ var prolaz=0;
 
         mat4.identity(mvMatrix);
         
-        mat4.translate(mvMatrix,[ 0, 0, -8.0]);//[x/120.0-2.2, -y/120.0+2.2, -5.0]
+        mat4.translate(mvMatrix,[ 0, 0, -13.0]);//[x/120.0-2.2, -y/120.0+2.2, -5.0]
 		mat4.rotate(mvMatrix,x/60.0,[0.0,1.0,0.0]);//prolaz/30
 		mat4.rotate(mvMatrix,y/60.0,[0.0,0.0,1.0]);
+		setMatrixUniforms();
+		avionce.Draw();
+		mat4.identity(mvMatrix);
+		mat4.translate(mvMatrix,[ -4.0, -2.0, -12.0]);
+		mat4.rotate(mvMatrix,prolaz/30.0,[0.0,1.0,0.0]);
+		setMatrixUniforms();
+		avionce.Draw();
+		mat4.identity(mvMatrix);
+		mat4.translate(mvMatrix,[ 4.0, -2.0, -12.0]);
+		mat4.rotate(mvMatrix,-prolaz/35.0,[0.0,1.0,0.0]);
 		setMatrixUniforms();
 		avionce.Draw();
         //gl.bindBuffer(gl.ARRAY_BUFFER, triangleVertexPositionBuffer);
