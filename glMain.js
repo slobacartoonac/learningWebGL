@@ -1,12 +1,13 @@
 document.onkeydown = checkKey;
 var avionce=new Mesh("avionce");
-var player=new Rendable("nonameplayer");
+var someRendable=new Rendable("nonamesomeRendable");
+var player=new Player("nonameplayer");
 var labela;
 var renderer=new Renderer();
 function checkKey(e) {
 
     e = e || window.event;
-
+	player.handleControl(e);
     if (e.keyCode === 38) {
          labela.innerHTML=avionce.get();
     }
@@ -208,8 +209,9 @@ var prolaz=0;
 			0.0, 0.0, 1.0, 1.0
 		];
 		avionce.SetColors(colors);
-		player.SetMeshObject(avionce);
-		renderer.AddRenderer(player);
+		someRendable.SetMeshObject(avionce);
+		renderer.AddRenderer(someRendable);
+		player.AddRendable(someRendable);
    // gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(colors), gl.STATIC_DRAW);
     //triangleVertexColorBuffer.itemSize = 4;
    // triangleVertexColorBuffer.numItems = 24;
@@ -223,6 +225,7 @@ prolazold=prolaz;
 }
 function drawScene() 
 {
+	player.Update();
 	renderer.RenderScene();
 	prolaz++;
 }
