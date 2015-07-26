@@ -1,5 +1,6 @@
 <head>
 <meta charset="UTF-8" />
+<link rel="stylesheet" type="text/css" href="style.css">
 <script type="text/javascript" src="glMatrixMath.js"></script>
 <script type="text/javascript" src="object.js"></script>
 
@@ -50,13 +51,10 @@ precision mediump float;
 </script>
 </head>
 
-<body onload="webGLStart('kanvas');">
+<body onload="webGLStart('kanvas');" style="background-color: #111122">
 
-
-<canvas id="kanvas" width=800 height=600 style="border: none; width: 100%;
-    height: 100%;
-    max-width: 100%;">
-
-<center>
-<p id="undertag">This is me remakeing my first game from 2010 </p></center>
+<div class="container1">
+   <div class="tag" id="undertag"></div>
+<canvas class="canvascontainer" id="kanvas"  width=800 height=600">
+</div>
 </body>
