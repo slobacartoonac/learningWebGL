@@ -1,21 +1,24 @@
 document.onkeydown = checkKey;
 var avionce=new RendableObject("avionce");
+var labela;
 function checkKey(e) {
 
     e = e || window.event;
 
     if (e.keyCode === 38) {
-        document.getElementById("undertag").innerHTML =avionce.get();
+         labela.innerHTML=avionce.get();
     }
     else if (e.keyCode === 40) {
 	var doleime=new FirmNamed("doleee");
-        document.getElementById("undertag").innerHTML =doleime.get();
+        labela.innerHTML =doleime.get();
     }
     else if (e.keyCode === 37) {
-       alert("You pressed a key LEFT");
+       if(y_rot<1)
+	   y_rot+=0.2;
     }
     else if (e.keyCode === 39) {
-       alert("You pressed a key RIGHT");
+       if(y_rot>-1)
+	   y_rot-=0.2;
     }
 	else if (e.keyCode === 32) {
        alert("You pressed a key SPACE");
@@ -29,14 +32,16 @@ function checkKey(e) {
 
 
 
-var x=250;
-var y=250;
+var x=0;
+var y=0;
+var x_rot=0;
+var y_rot=0;
 function webGLStart(kanvas) {
     var canvas = document.getElementById(kanvas);
 	canvas.onmousemove=function(e)
 		{
-		x=e.clientX;
-		y=e.clientY;
+		//x=e.clientX;
+		//y=e.clientY;
 		}
     initGL(canvas);
     initShaders();
@@ -45,6 +50,8 @@ function webGLStart(kanvas) {
     gl.clearColor(0.0, 0.0, 0.0, 1.0);
     gl.enable(gl.DEPTH_TEST);
     window.setInterval(function(){drawScene()},33);
+	labela=document.getElementById("undertag");
+	window.setInterval(function(){updateLabel()},500);
   }
 var gl;
 var prolaz=0;
@@ -213,8 +220,15 @@ var prolaz=0;
     }
 
 
+function updateLabel()
+{
+labela.innerHTML="X:"+x.toFixed(2)+"  Y:"+y.toFixed(2)+"</br>x_a:"+x_rot.toFixed(2)+"  y_a:"+y_rot.toFixed(2)+"</br>frame:"+prolaz;
+}
     function drawScene() {
 	prolaz++;
+	x_rot+=y_rot/33;
+	x-=Math.sin(x_rot)/5;
+	y-=Math.cos(x_rot)/5;
         gl.viewport(0, 0, gl.viewportWidth, gl.viewportHeight);
         gl.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT);
 
@@ -222,19 +236,33 @@ var prolaz=0;
 
         mat4.identity(mvMatrix);
         
-        mat4.translate(mvMatrix,[ 0, 0, -13.0]);//[x/120.0-2.2, -y/120.0+2.2, -5.0]
-		mat4.rotate(mvMatrix,x/60.0,[0.0,1.0,0.0]);//prolaz/30
-		mat4.rotate(mvMatrix,y/60.0,[0.0,0.0,1.0]);
+        mat4.translate(mvMatrix,[ 0, -2, -13.0]);//[x/120.0-2.2, -y/120.0+2.2, -5.0]
+		mat4.rotate(mvMatrix,x_rot,[0.0,1.0,0.0]);//prolaz/30
+		mat4.rotate(mvMatrix,y_rot,[0.0,0.0,1.0]);
 		setMatrixUniforms();
 		avionce.Draw();
+		
 		mat4.identity(mvMatrix);
-		mat4.translate(mvMatrix,[ -4.0, -2.0, -12.0]);
-		mat4.rotate(mvMatrix,prolaz/30.0,[0.0,1.0,0.0]);
+		mat4.translate(mvMatrix,[ 10-x, -2.0, -10-y]);
+		mat4.rotate(mvMatrix,prolaz/15,[0.0,1.0,0.0]);
 		setMatrixUniforms();
 		avionce.Draw();
+		
 		mat4.identity(mvMatrix);
-		mat4.translate(mvMatrix,[ 4.0, -2.0, -12.0]);
-		mat4.rotate(mvMatrix,-prolaz/35.0,[0.0,1.0,0.0]);
+		mat4.translate(mvMatrix,[ 10-x, -2.0, 10-y]);
+		mat4.rotate(mvMatrix,prolaz/15,[0.0,1.0,0.0]);
+		setMatrixUniforms();
+		avionce.Draw();
+		
+		mat4.identity(mvMatrix);
+		mat4.translate(mvMatrix,[ -10-x, -2.0, -10-y]);
+		mat4.rotate(mvMatrix,prolaz/15,[0.0,1.0,0.0]);
+		setMatrixUniforms();
+		avionce.Draw();
+		
+		mat4.identity(mvMatrix);
+		mat4.translate(mvMatrix,[ -10-x, -2.0, 10-y]);
+		mat4.rotate(mvMatrix,prolaz/15,[0.0,1.0,0.0]);
 		setMatrixUniforms();
 		avionce.Draw();
         //gl.bindBuffer(gl.ARRAY_BUFFER, triangleVertexPositionBuffer);
