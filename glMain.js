@@ -7,7 +7,7 @@ var renderer=new Renderer();
 function checkKey(e) {
 
     e = e || window.event;
-	player.handleControl(e);
+	player.handleControl(e.keyCode);
     if (e.keyCode === 38) {
          labela.innerHTML=avionce.get();
     }

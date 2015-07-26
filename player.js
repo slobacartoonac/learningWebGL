@@ -32,27 +32,27 @@ var updateing=this._rendable;
 	updateing.x-=Math.sin(updateing.y_rot)/20;
 	updateing.z-=Math.cos(updateing.y_rot)/20;
 }
-Player.prototype.handleControl=function(e)
+Player.prototype.handleControl=function(code)
 {
-if (e.keyCode === 38) {
+if (code === 38) {
 	//gore
     }
-    else if (e.keyCode === 40) {
+    else if (code === 40) {
 	//"doleee");
 
     }
-    else if (e.keyCode === 37) {
+    else if (code === 37) {
        if(this._rendable.z_rot<1)
 	   this._rendable.z_rot+=0.2;
     }
-    else if (e.keyCode === 39) {
+    else if (code === 39) {
        if(this._rendable.z_rot>-1)
 	   this._rendable.z_rot-=0.2;
     }
-	else if (e.keyCode === 32) {
+	else if (code === 32) {
       // alert("You pressed a key SPACE");
     }
-	else if (e.keyCode === 27) {
+	else if (code === 27) {
       // alert("You pressed a key ESC");
     }
 }
