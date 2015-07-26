@@ -16,6 +16,32 @@
    color: #FFFFFF;
    font-weight: bold;
 }
+.steer {
+   float: left;
+   position: absolute;
+   left: 0px;
+   bottom: 0px;
+   z-index: 1000;
+   background-color: #92AD40;
+   padding: 5px;
+   margin:5%;
+   width:10%;
+   height:15%;
+   color: #FFFFFF;
+   font-weight: bold;
+}
+.shoot {
+   float: left;
+   position: absolute;
+   right: 0px;
+   bottom: 0px;
+   z-index: 1000;
+   background-color: #cc1010;
+   padding: 5px;
+   margin:10%;
+   color: #FFFFFF;
+   font-weight: bold;
+}
 .canvascontainer
 {
 	border: none;
