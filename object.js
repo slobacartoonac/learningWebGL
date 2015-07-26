@@ -20,13 +20,13 @@ FirmNamed.prototype.get=function ()
 	return NamedObject.prototype.get.call(this)+"!!";
 };
 
-function RendableObject(value)
+function Mesh(value)
 {
 NamedObject.call(this,value);
 }
-RendableObject.prototype=Object.create(NamedObject.prototype);
-RendableObject.prototype.constructor= RendableObject;
-RendableObject.prototype.Draw=function()
+Mesh.prototype=Object.create(NamedObject.prototype);
+Mesh.prototype.constructor= Mesh;
+Mesh.prototype.Draw=function()
 {
         gl.bindBuffer(gl.ARRAY_BUFFER, this.triangleVertexPositionBuffer);
         gl.vertexAttribPointer(shaderProgram.vertexPositionAttribute, this.triangleVertexPositionBuffer.itemSize, gl.FLOAT, false, 0, 0);
@@ -34,7 +34,7 @@ RendableObject.prototype.Draw=function()
 		gl.vertexAttribPointer(shaderProgram.vertexColorAttribute, this.triangleVertexColorBuffer.itemSize, gl.FLOAT, false, 0, 0);
         gl.drawArrays(gl.TRIANGLES, 0, this.triangleVertexPositionBuffer.numItems);
 }
-RendableObject.prototype.SetVertices=function(vertices)
+Mesh.prototype.SetVertices=function(vertices)
 {
 this.triangleVertexPositionBuffer = gl.createBuffer();
         gl.bindBuffer(gl.ARRAY_BUFFER, this.triangleVertexPositionBuffer);
@@ -43,7 +43,7 @@ this.triangleVertexPositionBuffer = gl.createBuffer();
         this.triangleVertexPositionBuffer.numItems = vertices.length/3;
 		return this.triangleVertexPositionBuffer;
 }
-RendableObject.prototype.SetColors=function(colors)
+Mesh.prototype.SetColors=function(colors)
 {
 this.triangleVertexColorBuffer = gl.createBuffer();
         gl.bindBuffer(gl.ARRAY_BUFFER, this.triangleVertexColorBuffer);

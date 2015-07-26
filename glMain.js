@@ -1,6 +1,8 @@
 document.onkeydown = checkKey;
-var avionce=new RendableObject("avionce");
+var avionce=new Mesh("avionce");
+var player=new Rendable("nonameplayer");
 var labela;
+var renderer=new Renderer();
 function checkKey(e) {
 
     e = e || window.event;
@@ -130,18 +132,10 @@ var prolaz=0;
     }
 
 
-    var mvMatrix = mat4.create();
-    var pMatrix = mat4.create();
+    
 
-    function setMatrixUniforms() {
-        gl.uniformMatrix4fv(shaderProgram.pMatrixUniform, false, pMatrix);
-        gl.uniformMatrix4fv(shaderProgram.mvMatrixUniform, false, mvMatrix);
-    }
-
-
-
-    var triangleVertexPositionBuffer;
-	var triangleVertexColorBuffer;
+   // var triangleVertexPositionBuffer;
+	//var triangleVertexColorBuffer;
     function initBuffers() {
        // triangleVertexPositionBuffer = gl.createBuffer();
        // gl.bindBuffer(gl.ARRAY_BUFFER, triangleVertexPositionBuffer);
@@ -214,61 +208,21 @@ var prolaz=0;
 			0.0, 0.0, 1.0, 1.0
 		];
 		avionce.SetColors(colors);
+		player.SetMeshObject(avionce);
+		renderer.AddRenderer(player);
    // gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(colors), gl.STATIC_DRAW);
     //triangleVertexColorBuffer.itemSize = 4;
    // triangleVertexColorBuffer.numItems = 24;
     }
 
-
+var prolazold=0;
 function updateLabel()
 {
-labela.innerHTML="X:"+x.toFixed(2)+"  Y:"+y.toFixed(2)+"</br>x_a:"+x_rot.toFixed(2)+"  y_a:"+y_rot.toFixed(2)+"</br>frame:"+prolaz;
+labela.innerHTML="X:"+x.toFixed(2)+"  Y:"+y.toFixed(2)+"</br>x_a:"+x_rot.toFixed(2)+"  y_a:"+y_rot.toFixed(2)+"</br>frame:"+(prolaz-prolazold)*2;
+prolazold=prolaz;
 }
-    function drawScene() {
+function drawScene() 
+{
+	renderer.RenderScene();
 	prolaz++;
-	x_rot+=y_rot/33;
-	x-=Math.sin(x_rot)/5;
-	y-=Math.cos(x_rot)/5;
-        gl.viewport(0, 0, gl.viewportWidth, gl.viewportHeight);
-        gl.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT);
-
-        mat4.perspective(45, gl.viewportWidth / gl.viewportHeight, 0.1, 100.0, pMatrix);
-
-        mat4.identity(mvMatrix);
-        
-        mat4.translate(mvMatrix,[ 0, -2, -13.0]);//[x/120.0-2.2, -y/120.0+2.2, -5.0]
-		mat4.rotate(mvMatrix,x_rot,[0.0,1.0,0.0]);//prolaz/30
-		mat4.rotate(mvMatrix,y_rot,[0.0,0.0,1.0]);
-		setMatrixUniforms();
-		avionce.Draw();
-		
-		mat4.identity(mvMatrix);
-		mat4.translate(mvMatrix,[ 10-x, -2.0, -10-y]);
-		mat4.rotate(mvMatrix,prolaz/15,[0.0,1.0,0.0]);
-		setMatrixUniforms();
-		avionce.Draw();
-		
-		mat4.identity(mvMatrix);
-		mat4.translate(mvMatrix,[ 10-x, -2.0, 10-y]);
-		mat4.rotate(mvMatrix,prolaz/15,[0.0,1.0,0.0]);
-		setMatrixUniforms();
-		avionce.Draw();
-		
-		mat4.identity(mvMatrix);
-		mat4.translate(mvMatrix,[ -10-x, -2.0, -10-y]);
-		mat4.rotate(mvMatrix,prolaz/15,[0.0,1.0,0.0]);
-		setMatrixUniforms();
-		avionce.Draw();
-		
-		mat4.identity(mvMatrix);
-		mat4.translate(mvMatrix,[ -10-x, -2.0, 10-y]);
-		mat4.rotate(mvMatrix,prolaz/15,[0.0,1.0,0.0]);
-		setMatrixUniforms();
-		avionce.Draw();
-        //gl.bindBuffer(gl.ARRAY_BUFFER, triangleVertexPositionBuffer);
-        //gl.vertexAttribPointer(shaderProgram.vertexPositionAttribute, triangleVertexPositionBuffer.itemSize, gl.FLOAT, false, 0, 0);
-		//gl.bindBuffer(gl.ARRAY_BUFFER, triangleVertexColorBuffer);
-		//gl.vertexAttribPointer(shaderProgram.vertexColorAttribute, triangleVertexColorBuffer.itemSize, gl.FLOAT, false, 0, 0);
-        
-        //gl.drawArrays(gl.TRIANGLES, 0, triangleVertexPositionBuffer.numItems);
-    }
+}
