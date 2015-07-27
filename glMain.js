@@ -49,7 +49,6 @@ function webGLStart(kanvas) {
     initGL(canvas);
     initShaders();
     initBuffers();
-	initTexture();
 	
 
     gl.clearColor(0.2, 0.2, 0.2, 1.0);
