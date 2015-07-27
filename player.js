@@ -34,6 +34,8 @@ var updateing=this._rendable;
 }
 Player.prototype.handleControl=function(code)
 {
+//2=='2' //true
+//2==='2'//false
 if (code === 38) {
 	//gore
     }

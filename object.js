@@ -28,8 +28,19 @@ Mesh.prototype=Object.create(NamedObject.prototype);
 Mesh.prototype.constructor= Mesh;
 Mesh.prototype.Draw=function()
 {
+				
         gl.bindBuffer(gl.ARRAY_BUFFER, this.triangleVertexPositionBuffer);
         gl.vertexAttribPointer(shaderProgram.vertexPositionAttribute, this.triangleVertexPositionBuffer.itemSize, gl.FLOAT, false, 0, 0);
+		
+		
+		 gl.bindBuffer(gl.ARRAY_BUFFER, this.triangleVertexTextureCoordBuffer);
+         gl.vertexAttribPointer(shaderProgram.textureCoordAttribute, this.triangleVertexTextureCoordBuffer.itemSize, gl.FLOAT, false, 0, 0);
+		
+		gl.activeTexture(gl.TEXTURE0);
+		gl.bindTexture(gl.TEXTURE_2D, this.texture);
+		gl.uniform1i(shaderProgram.samplerUniform, 0);
+		
+		
 		gl.bindBuffer(gl.ARRAY_BUFFER, this.triangleVertexColorBuffer);
 		gl.vertexAttribPointer(shaderProgram.vertexColorAttribute, this.triangleVertexColorBuffer.itemSize, gl.FLOAT, false, 0, 0);
         gl.drawArrays(gl.TRIANGLES, 0, this.triangleVertexPositionBuffer.numItems);
@@ -52,5 +63,24 @@ this.triangleVertexColorBuffer = gl.createBuffer();
         this.triangleVertexColorBuffer.numItems = colors.length/4;
 		return this.triangleVertexColorBuffer;
 }
+Mesh.prototype.SetTexture=function(file)
+{
+this.texture = gl.createTexture();
+    this.texture .image = new Image();
+	this.delegare=createDelegate(handleLoadedTexture,this)
+    this.texture .image.onload = this.delegare;
+    this.texture.image.src = file;
+}
+
+Mesh.prototype.SetTextureCords=function(cords)
+{
+this.triangleVertexTextureCoordBuffer = gl.createBuffer();
+        gl.bindBuffer(gl.ARRAY_BUFFER, this.triangleVertexTextureCoordBuffer);
+        gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(cords), gl.STATIC_DRAW);
+        this.triangleVertexTextureCoordBuffer.itemSize = 2;
+        this.triangleVertexTextureCoordBuffer.numItems = cords.length/2;
+		return this.triangleVertexTextureCoordBuffer;
+}
+
 
 

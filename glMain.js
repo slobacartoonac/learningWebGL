@@ -49,13 +49,16 @@ function webGLStart(kanvas) {
     initGL(canvas);
     initShaders();
     initBuffers();
+	initTexture();
+	
 
-    gl.clearColor(0.0, 0.0, 0.0, 1.0);
+    gl.clearColor(0.2, 0.2, 0.2, 1.0);
     gl.enable(gl.DEPTH_TEST);
     window.setInterval(function(){drawScene()},33);
 	labela=document.getElementById("undertag");
 	window.setInterval(function(){updateLabel()},500);
   }
+  
 var gl;
 var prolaz=0;
     function initGL(canvas) {
@@ -110,8 +113,8 @@ var prolaz=0;
     var shaderProgram;
 
     function initShaders() {
-        var fragmentShader = getShader(gl, "shader-fs-colored");
-        var vertexShader = getShader(gl, "shader-vs-colored");
+        var fragmentShader = getShader(gl, "shader-fs-textured");
+        var vertexShader = getShader(gl, "shader-vs-textured");
 
         shaderProgram = gl.createProgram();
         gl.attachShader(shaderProgram, vertexShader);
@@ -130,6 +133,9 @@ var prolaz=0;
         gl.enableVertexAttribArray(shaderProgram.vertexColorAttribute);
         shaderProgram.pMatrixUniform = gl.getUniformLocation(shaderProgram, "uPMatrix");
         shaderProgram.mvMatrixUniform = gl.getUniformLocation(shaderProgram, "uMVMatrix");
+		shaderProgram.textureCoordAttribute = gl.getAttribLocation(shaderProgram, "aTextureCoord");
+        gl.enableVertexAttribArray(shaderProgram.textureCoordAttribute);
+        shaderProgram.samplerUniform = gl.getUniformLocation(shaderProgram, "uSampler");
     }
 
 
@@ -209,6 +215,10 @@ var prolaz=0;
 			0.0, 0.0, 1.0, 1.0
 		];
 		avionce.SetColors(colors);
+		avionce.SetTextureCords(colors);
+		avionce.SetTexture("test.gif");
+		
+		
 		someRendable.SetMeshObject(avionce);
 		renderer.AddRenderer(someRendable);
 		player.AddRendable(someRendable);
