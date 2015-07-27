@@ -36,22 +36,22 @@ for(var i=0; i<51; i++) {
 		
 	for(ai=1;ai<=50;ai++){
 		for(bi=1;bi<=50;bi++){
-			ra=(Math.random()%100)/10;
+			ra=(Math.random()*100)/10;
 			if(ai<15){
 				if(ai<3)
-			ra=(Math.random()%100)/2;
-			rb=(Math.random()%100)*Math.sin(ai*0.1)/3;
-			rc=(Math.random()%100)*Math.sin(ai*0.1)/3;}
+			ra=(Math.random()*100)/2;
+			rb=(Math.random()*100)*Math.sin(ai*0.1)/3;
+			rc=(Math.random()*100)*Math.sin(ai*0.1)/3;}
 			else{
-				rb=(Math.random()%100)*Math.sin(ai*0.1)/5;
-				rc=(Math.random()%100)*Math.sin(ai*0.1)/5;}
-			ka[ai][bi]=Math.cos(ai*0.13)*200+ra;
-			kb[ai][bi]=Math.sin(bi*0.13)*200*Math.sin(ai*0.13)+rb;
-			kc[ai][bi]=Math.cos(bi*0.13)*200*Math.sin(ai*0.13)+rc;
+				rb=(Math.random()*100)*Math.sin(ai*0.1)/5;
+				rc=(Math.random()*100)*Math.sin(ai*0.1)/5;}
+			ka[ai][bi]=Math.cos(ai*0.13)*500+ra;
+			kb[ai][bi]=Math.sin(bi*0.13)*500*Math.sin(ai*0.13)+rb;
+			kc[ai][bi]=Math.cos(bi*0.13)*500*Math.sin(ai*0.13)+rc;
 		}};
 		for(ai=0;ai<=23;ai++){
 		for(bi=1;bi<=47;bi++){
-			if(bi<46){
+			if(bi>46){
 				la3=ka[ai+1][1];
 			lb3=kb[ai+1][1];
 			lc3=kc[ai+1][1];
@@ -75,7 +75,7 @@ for(var i=0; i<51; i++) {
 	    glTexCoord2f(0.0, 0.0,tcords);glVertex3f( lb, la,lc,vertices);				// Top1
 		glTexCoord2f(1.0, 0.0,tcords);glVertex3f(lb2, la2,lc2,vertices);			// Bottom Left1
 		glTexCoord2f(1.0, 1.0,tcords);glVertex3f(lb3, la3,lc3,vertices);				// Bottom Right1
-		glTexCoord2f(1.0, 0.0,tcords);glVertex3f(lb2, la2,lc2,vertices);			// Bottom Left1
+	    glTexCoord2f(0.0, 0.0,tcords);glVertex3f( lb, la,lc,vertices);				// Top1
 		glTexCoord2f(1.0, 1.0,tcords);glVertex3f(lb3, la3,lc3,vertices);				// Bottom Right1
 		glTexCoord2f(0.0, 1.0,tcords);glVertex3f(lb1, la1,lc1,vertices);
 }};

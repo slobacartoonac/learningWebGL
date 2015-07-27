@@ -232,8 +232,8 @@ podloga(vertices2,cords2);
 		avionce.SetTextureCords(colors);
 		avionce2.SetTextureCords(cords2);
 		avionce.SetTexture("test.gif");
-		avionce2.SetTexture("test1.gif");
-		someRendable2.SetPosition(0,-190,-100);
+		avionce2.SetTexture("slika2.bmp");
+		someRendable2.SetPosition(0,-490,-400);
 		someRendable2.SetRotation(0,1,0);
 		
 		someRendable.SetMeshObject(avionce);
