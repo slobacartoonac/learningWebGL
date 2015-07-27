@@ -1,6 +1,4 @@
 document.onkeydown = checkKey;
-var avionce=new Mesh("avionce");
-var someRendable=new Rendable("nonamesomeRendable");
 var player=new Player("nonameplayer");
 var labela;
 var renderer=new Renderer();
@@ -49,7 +47,6 @@ function webGLStart(kanvas) {
     initGL(canvas);
     initShaders();
     initBuffers();
-	
 
     gl.clearColor(0.2, 0.2, 0.2, 1.0);
     gl.enable(gl.DEPTH_TEST);
@@ -143,6 +140,10 @@ var prolaz=0;
    // var triangleVertexPositionBuffer;
 	//var triangleVertexColorBuffer;
     function initBuffers() {
+	var avionce=new Mesh("avionce");
+	var avionce2=new Mesh("avionce2");
+    var someRendable=new Rendable("nonamesomeRendable");
+	var someRendable2=new Rendable("nonamesomeRendable2");
        // triangleVertexPositionBuffer = gl.createBuffer();
        // gl.bindBuffer(gl.ARRAY_BUFFER, triangleVertexPositionBuffer);
         var vertices =  [ 0.0, 0.0, -3.0,
@@ -176,7 +177,39 @@ var prolaz=0;
 -0.5, 0.5,0.5,
  -0.2, 0.1, -1.0,
 -1.0, 1.0, 1.0];
+var vertices2 =  [ 0.0, 0.0, -3.0,
+ 0.0, 1.0, 1.0,
+ -2, 0.0, 0.0,
+
+ -1.0, 0.0, 0.0,
+1.0, 0.0, 0.0,
+0.0, 1.0, 2,
+
+0.0, 2, 2,
+1.0, 0.0, 0.0,
+0.0, 0.0, -3.0,
+
+0.0, 0.0, -3.0,
+-1.0, 0.0, 0.0,
+1.0, 0.0, 0.0,
+
+ 0.0, 0.0, -1.0,
+ -1.0, 0.0, 0.0,
+ -3.0, 0.0, -1.0,
+
+ 0.0, 0.0, -1.0,
+ 1.0, 0.0, 0.0,
+ 3.0, 0.0, -1.0,
+
+ 1, 1,1,
+ 0.2, 0.1, -1.0,
+2.0, 2.0,2.0,
+
+-1, 1,1,
+ -0.2, 0.1, -1.0,
+-1.0, 1.0, 1.0];
        avionce.SetVertices(vertices);
+	   avionce2.SetVertices(vertices2);
        // gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(vertices), gl.STATIC_DRAW);
        // triangleVertexPositionBuffer.itemSize = 3;
         //triangleVertexPositionBuffer.numItems = 24;
@@ -214,12 +247,18 @@ var prolaz=0;
 			0.0, 0.0, 1.0, 1.0
 		];
 		avionce.SetColors(colors);
+		avionce2.SetColors(colors);
 		avionce.SetTextureCords(colors);
+		avionce2.SetTextureCords(colors);
 		avionce.SetTexture("test.gif");
-		
+		avionce2.SetTexture("test1.gif");
+		someRendable2.SetPosition(0,-2,-7);
+		someRendable2.SetRotation(0,1,0);
 		
 		someRendable.SetMeshObject(avionce);
+		someRendable2.SetMeshObject(avionce2);
 		renderer.AddRenderer(someRendable);
+		renderer.AddRenderer(someRendable2);
 		player.AddRendable(someRendable);
    // gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(colors), gl.STATIC_DRAW);
     //triangleVertexColorBuffer.itemSize = 4;
