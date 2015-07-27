@@ -146,7 +146,8 @@ var prolaz=0;
 	var someRendable2=new Rendable("nonamesomeRendable2");
        // triangleVertexPositionBuffer = gl.createBuffer();
        // gl.bindBuffer(gl.ARRAY_BUFFER, triangleVertexPositionBuffer);
-        var vertices =  [ 0.0, 0.0, -3.0,
+        var vertices =  [ 
+	0.0, 0.0, -3.0,
  0.0, 1.0, 1.0,
  -1.0, 0.0, 0.0,
 
@@ -162,11 +163,11 @@ var prolaz=0;
 -1.0, 0.0, 0.0,
 1.0, 0.0, 0.0,
 
- 0.0, 0.0, -1.0,
+-0.66, 0.0, -1.0,
  -1.0, 0.0, 0.0,
  -3.0, 0.0, -1.0,
 
- 0.0, 0.0, -1.0,
+ 0.66, 0.0, -1.0,
  1.0, 0.0, 0.0,
  3.0, 0.0, -1.0,
 
@@ -177,7 +178,8 @@ var prolaz=0;
 -0.5, 0.5,0.5,
  -0.2, 0.1, -1.0,
 -1.0, 1.0, 1.0];
-var vertices2 =  [ 0.0, 0.0, -3.0,
+var vertices2 =  [
+ 0.0, 0.0, -3.0,
  0.0, 1.0, 1.0,
  -2, 0.0, 0.0,
 
@@ -207,7 +209,8 @@ var vertices2 =  [ 0.0, 0.0, -3.0,
 
 -1, 1,1,
  -0.2, 0.1, -1.0,
--1.0, 1.0, 1.0];
+-1.0, 1.0, 1.0
+];
        avionce.SetVertices(vertices);
 	   avionce2.SetVertices(vertices2);
        // gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(vertices), gl.STATIC_DRAW);
