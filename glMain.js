@@ -39,6 +39,8 @@ var x_rot=0;
 var y_rot=0;
 function webGLStart(kanvas) {
     var canvas = document.getElementById(kanvas);
+	var screen_width=outerWidth;
+    var screen_height=outerHeight;
 	canvas.onmousemove=function(e)
 		{
 		//x=e.clientX;
@@ -60,8 +62,14 @@ var prolaz=0;
     function initGL(canvas) {
         try {
             gl = canvas.getContext("experimental-webgl");
-            gl.viewportWidth = canvas.width;
-            gl.viewportHeight = canvas.height;
+			function resize(){
+            gl.viewportWidth = innerWidth;
+            gl.viewportHeight = innerHeight;
+			canvas.width= gl.viewportWidth;
+			canvas.height= gl.viewportHeight;
+			}
+			resize();
+			window.onresize=resize;
         } catch (e) {
         }
         if (!gl) {
@@ -178,39 +186,9 @@ var prolaz=0;
 -0.5, 0.5,0.5,
  -0.2, 0.1, -1.0,
 -1.0, 1.0, 1.0];
-var vertices2 =  [
- 0.0, 0.0, -3.0,
- 0.0, 1.0, 1.0,
- -2, 0.0, 0.0,
-
- -1.0, 0.0, 0.0,
-1.0, 0.0, 0.0,
-0.0, 1.0, 2,
-
-0.0, 2, 2,
-1.0, 0.0, 0.0,
-0.0, 0.0, -3.0,
-
-0.0, 0.0, -3.0,
--1.0, 0.0, 0.0,
-1.0, 0.0, 0.0,
-
- 0.0, 0.0, -1.0,
- -1.0, 0.0, 0.0,
- -3.0, 0.0, -1.0,
-
- 0.0, 0.0, -1.0,
- 1.0, 0.0, 0.0,
- 3.0, 0.0, -1.0,
-
- 1, 1,1,
- 0.2, 0.1, -1.0,
-2.0, 2.0,2.0,
-
--1, 1,1,
- -0.2, 0.1, -1.0,
--1.0, 1.0, 1.0
-];
+var vertices2 =[];
+var cords2=[];
+podloga(vertices2,cords2);
        avionce.SetVertices(vertices);
 	   avionce2.SetVertices(vertices2);
        // gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(vertices), gl.STATIC_DRAW);
@@ -252,17 +230,17 @@ var vertices2 =  [
 		avionce.SetColors(colors);
 		avionce2.SetColors(colors);
 		avionce.SetTextureCords(colors);
-		avionce2.SetTextureCords(colors);
+		avionce2.SetTextureCords(cords2);
 		avionce.SetTexture("test.gif");
 		avionce2.SetTexture("test1.gif");
-		someRendable2.SetPosition(0,-2,-7);
+		someRendable2.SetPosition(0,-190,-100);
 		someRendable2.SetRotation(0,1,0);
 		
 		someRendable.SetMeshObject(avionce);
 		someRendable2.SetMeshObject(avionce2);
-		renderer.AddRenderer(someRendable);
+		//renderer.AddRenderer(someRendable);
 		renderer.AddRenderer(someRendable2);
-		player.AddRendable(someRendable);
+		player.AddRendable(someRendable2);
    // gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(colors), gl.STATIC_DRAW);
     //triangleVertexColorBuffer.itemSize = 4;
    // triangleVertexColorBuffer.numItems = 24;
