@@ -23,7 +23,7 @@ function checkKey(e) {
 	   y_rot-=0.2;
     }
 	else if (e.keyCode === 32) {
-       alert("You pressed a key SPACE");
+      
     }
 	else if (e.keyCode === 27) {
        alert("You pressed a key ESC");
@@ -252,7 +252,7 @@ podloga(vertices2,cords2);
 		avionce2.SetTextureCords(cords2);
 		avionce.SetTexture("test.gif");
 		avionce2.SetTexture("slika2.bmp");
-		someRendable2.SetPosition(0,-490,-300);
+		someRendable2.SetPosition(0,-50,-300);
 		someRendable.SetPosition(0,0,0);
 		cammera.SetPosition(0,2,0);
 		someRendable2.SetRotation(0,1,0);

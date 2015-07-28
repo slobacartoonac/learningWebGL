@@ -1,16 +1,5 @@
 function podloga(vertices,tcords){
 	var  ai=0, bi=0;
-	function glTexCoord2f(a,b,c)
-	{
-	c.push(a);
-	c.push(b);
-	}
-	function glVertex3f(a,b,c,d)
-	{
-	d.push(a);
-	d.push(b);
-	d.push(c);
-	}
 		var ra,rb,rc,ka,kb,kc,la1,la2,la3,lb1,lb2,lb3,lc1,lc2,lc3,la,lb,lc;
 		ka = [];
 for(var i=0; i<51; i++) {
@@ -46,6 +35,8 @@ for(var i=0; i<51; i++) {
 				rb=(Math.random()*100)*Math.sin(ai*0.1)/5;
 				rc=(Math.random()*100)*Math.sin(ai*0.1)/5;}
 			ka[ai][bi]=Math.cos(ai*0.13)*500+ra;
+			//fixx until rotation of planet is planed// remove after done
+			if(ka[ai][bi]>0)ka[ai][bi]=ra*5;
 			kb[ai][bi]=Math.sin(bi*0.13)*500*Math.sin(ai*0.13)+rb;
 			kc[ai][bi]=Math.cos(bi*0.13)*500*Math.sin(ai*0.13)+rc;
 		}};
@@ -80,3 +71,33 @@ for(var i=0; i<51; i++) {
 		glTexCoord2f(0.0, 1.0,tcords);glVertex3f(lb1, la1,lc1,vertices);
 }};
 }
+function glTexCoord2f(a,b,c)
+	{
+	c.push(a);
+	c.push(b);
+	}
+function glVertex3f(a,b,c,d)
+	{
+	d.push(a);
+	d.push(b);
+	d.push(c);
+	}
+function objectProjectile(vertices, textcord){
+glTexCoord2f(0.0, 0.0,textcord);glVertex3f( 0.0, 0.0, -3.0,vertices);				// Top1
+		glTexCoord2f(1.0, 1.0,textcord);glVertex3f( 0.0, 1.0, 1.0,vertices);
+		glTexCoord2f(0.0, 1.0,textcord);glVertex3f( -1.0, 0.0, 0.0,vertices);
+
+		glTexCoord2f(0.0, 1.0,textcord);glVertex3f( -1.0, 0.0, 0.0,vertices);
+		glTexCoord2f(1.0, 0.0,textcord);glVertex3f( 1.0, 0.0, 0.0,vertices);
+		glTexCoord2f(0.0, 0.0,textcord);glVertex3f( 0.0, 1.0, 1.0,vertices);
+
+		glTexCoord2f(0.0, 0.0,textcord);glVertex3f( 0.0, 1.0, 1.0,vertices);
+		glTexCoord2f(1.0, 0.0,textcord);glVertex3f( 1.0, 0.0, 0.0,vertices);
+		glTexCoord2f(0.0, 1.0,textcord);glVertex3f( 0.0, 0.0, -3.0,vertices);
+
+		glTexCoord2f(1.0, 0.0,textcord);glVertex3f( 0.0, 0.0, -3.0,vertices);
+		glTexCoord2f(0.0, 1.0,textcord);glVertex3f( -1.0, 0.0, 0.0,vertices);
+		glTexCoord2f(0.0, 0.0,textcord);glVertex3f( 1.0, 0.0, 0.0,vertices);
+}
+
+

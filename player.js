@@ -4,6 +4,7 @@ NamedObject.call(this,value);
 this._helth=0;
 this._items=[];
 speed=0;
+this.projmesh=null;
 }
 
 Player.prototype=Object.create(NamedObject.prototype);
@@ -74,6 +75,21 @@ if (code === 38) {
 	   this._rendable.z_rot-=0.2;
     }
 	else if (code === 32) {
+	var projvert=[];
+	var projtext=[];
+	if(this.projmesh===null){
+	this.projmesh=new Mesh("projectile");
+	objectProjectile(projvert,projtext);
+    this.projmesh.SetVertices(projvert);
+	this.projmesh.SetColors(projtext);
+	this.projmesh.SetTextureCords(projtext);
+	this.projmesh.SetTexture("test1.gif");
+	}
+	var projRendable=new Rendable("projectilerendable");
+	projRendable.SetMeshObject(this.projmesh);
+	projRendable.SetPosition(this._rendable.x,this._rendable.y,this._rendable.z);
+	projRendable.SetRotation(this._rendable.x_rot,this._rendable.y_rot,this._rendable.z_rot);
+	renderer.AddRenderer(projRendable);
       // alert("You pressed a key SPACE");
     }
 	else if (code === 27) {
