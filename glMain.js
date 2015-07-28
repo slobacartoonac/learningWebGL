@@ -53,6 +53,7 @@ if (window.DeviceOrientationEvent) {
           z_rot = eventData.alpha
           }, false);
 }
+else alert("DeviceOrientation is not supported");
     var canvas = document.getElementById(kanvas);
 	var screen_width=outerWidth;
     var screen_height=outerHeight;
