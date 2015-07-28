@@ -38,7 +38,21 @@ var x=0;
 var y=0;
 var x_rot=0;
 var y_rot=0;
+var z_rot=0;
 function webGLStart(kanvas) {
+if (window.DeviceOrientationEvent) {
+ console.log("DeviceOrientation is supported");
+ window.addEventListener('deviceorientation', function(eventData) {
+          // gamma is the left-to-right tilt in degrees, where right is positive
+          x_rot = eventData.gamma;
+          
+          // beta is the front-to-back tilt in degrees, where front is positive
+          y_rot = eventData.beta;
+          
+          // alpha is the compass direction the device is facing in degrees
+          z_rot = eventData.alpha
+          }, false);
+}
     var canvas = document.getElementById(kanvas);
 	var screen_width=outerWidth;
     var screen_height=outerHeight;
@@ -255,7 +269,7 @@ podloga(vertices2,cords2);
 var prolazold=0;
 function updateLabel()
 {
-labela.innerHTML="X:"+x.toFixed(2)+"  Y:"+y.toFixed(2)+"</br>x_a:"+x_rot.toFixed(2)+"  y_a:"+y_rot.toFixed(2)+"</br>frame:"+(prolaz-prolazold)*2;
+labela.innerHTML="X:"+x.toFixed(2)+"  Y:"+y.toFixed(2)+"</br>x_a:"+x_rot.toFixed(2)+"  y_a:"+y_rot.toFixed(2)+"  z_a:"+z_rot.toFixed(2)+"</br>frame:"+(prolaz-prolazold)*2;
 prolazold=prolaz;
 }
 function drawScene() 
