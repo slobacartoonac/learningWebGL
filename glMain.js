@@ -2,6 +2,7 @@ document.onkeydown = checkKey;
 var player=new Player("nonameplayer");
 var labela;
 var renderer=new Renderer();
+var cammera;
 function checkKey(e) {
 
     e = e || window.event;
@@ -137,6 +138,7 @@ var prolaz=0;
         gl.enableVertexAttribArray(shaderProgram.vertexColorAttribute);
         shaderProgram.pMatrixUniform = gl.getUniformLocation(shaderProgram, "uPMatrix");
         shaderProgram.mvMatrixUniform = gl.getUniformLocation(shaderProgram, "uMVMatrix");
+		shaderProgram.pCMatrixUniform = gl.getUniformLocation(shaderProgram, "uCMatrix");
 		shaderProgram.textureCoordAttribute = gl.getAttribLocation(shaderProgram, "aTextureCoord");
         gl.enableVertexAttribArray(shaderProgram.textureCoordAttribute);
         shaderProgram.samplerUniform = gl.getUniformLocation(shaderProgram, "uSampler");
@@ -148,6 +150,7 @@ var prolaz=0;
    // var triangleVertexPositionBuffer;
 	//var triangleVertexColorBuffer;
     function initBuffers() {
+	cammera=new Cammera("firstcammera");
 	var avionce=new Mesh("avionce");
 	var avionce2=new Mesh("avionce2");
     var someRendable=new Rendable("nonamesomeRendable");
@@ -233,8 +236,9 @@ podloga(vertices2,cords2);
 		avionce2.SetTextureCords(cords2);
 		avionce.SetTexture("test.gif");
 		avionce2.SetTexture("slika2.bmp");
-		someRendable2.SetPosition(0,-490,-400);
-		someRendable.SetPosition(0,-2,0);
+		someRendable2.SetPosition(0,-490,-300);
+		someRendable.SetPosition(0,0,0);
+		cammera.SetPosition(0,2,0);
 		someRendable2.SetRotation(0,1,0);
 		
 		someRendable.SetMeshObject(avionce);
@@ -242,6 +246,7 @@ podloga(vertices2,cords2);
 		renderer.AddRenderer(someRendable);
 		renderer.AddRenderer(someRendable2);
 		player.AddRendable(someRendable);
+		player.setCammera(cammera);
    // gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(colors), gl.STATIC_DRAW);
     //triangleVertexColorBuffer.itemSize = 4;
    // triangleVertexColorBuffer.numItems = 24;

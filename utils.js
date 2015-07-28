@@ -11,3 +11,8 @@ function handleLoadedTexture() {
         return func.apply(target, arguments);
     };
 }
+function VNormalise(inp){
+		var length = Math.sqrt(inp.x*inp.x+inp.y*inp.y);
+		inp.x=inp.x/length;
+		inp.y=inp.y/length;
+}
