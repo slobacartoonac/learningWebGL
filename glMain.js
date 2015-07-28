@@ -2,6 +2,7 @@ document.onkeydown = checkKey;
 var player=new Player("nonameplayer");
 var labela;
 var renderer=new Renderer();
+var physics=new Physics();
 var cammera;
 function checkKey(e) {
 
@@ -277,6 +278,7 @@ prolazold=prolaz;
 function drawScene() 
 {
 	player.Update();
+	physics.Update();
 	renderer.RenderScene();
 	prolaz++;
 }

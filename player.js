@@ -83,13 +83,14 @@ if (code === 38) {
     this.projmesh.SetVertices(projvert);
 	this.projmesh.SetColors(projtext);
 	this.projmesh.SetTextureCords(projtext);
-	this.projmesh.SetTexture("test1.gif");
+	this.projmesh.SetTexture("test1.bmp");
 	}
-	var projRendable=new Rendable("projectilerendable");
+	var projRendable=new Rendable("p"+Math.random());
 	projRendable.SetMeshObject(this.projmesh);
 	projRendable.SetPosition(this._rendable.x,this._rendable.y,this._rendable.z);
 	projRendable.SetRotation(this._rendable.x_rot,this._rendable.y_rot,this._rendable.z_rot);
 	renderer.AddRenderer(projRendable);
+	physics.AddToPropel(projRendable);
       // alert("You pressed a key SPACE");
     }
 	else if (code === 27) {

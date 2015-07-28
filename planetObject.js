@@ -83,21 +83,21 @@ function glVertex3f(a,b,c,d)
 	d.push(c);
 	}
 function objectProjectile(vertices, textcord){
-glTexCoord2f(0.0, 0.0,textcord);glVertex3f( 0.0, 0.0, -3.0,vertices);				// Top1
-		glTexCoord2f(1.0, 1.0,textcord);glVertex3f( 0.0, 1.0, 1.0,vertices);
-		glTexCoord2f(0.0, 1.0,textcord);glVertex3f( -1.0, 0.0, 0.0,vertices);
+glTexCoord2f(0.0, 0.2,textcord);glVertex3f( 0.0, 0.0, -3.0,vertices);				// Top1
+		glTexCoord2f(1.0, 1.0,textcord);glVertex3f( 0.0, 0.3, 0.3,vertices);
+		glTexCoord2f(0.0, 1.0,textcord);glVertex3f( -0.3, 0.0, 0.0,vertices);
 
-		glTexCoord2f(0.0, 1.0,textcord);glVertex3f( -1.0, 0.0, 0.0,vertices);
-		glTexCoord2f(1.0, 0.0,textcord);glVertex3f( 1.0, 0.0, 0.0,vertices);
-		glTexCoord2f(0.0, 0.0,textcord);glVertex3f( 0.0, 1.0, 1.0,vertices);
+		glTexCoord2f(0.0, 0.2,textcord);glVertex3f( -0.3, 0.0, 0.0,vertices);
+		glTexCoord2f(1.0, 0.0,textcord);glVertex3f( 0.3, 0.0, 0.0,vertices);
+		glTexCoord2f(0.0, 0.0,textcord);glVertex3f( 0.0, 0.3, 0.3,vertices);
 
-		glTexCoord2f(0.0, 0.0,textcord);glVertex3f( 0.0, 1.0, 1.0,vertices);
-		glTexCoord2f(1.0, 0.0,textcord);glVertex3f( 1.0, 0.0, 0.0,vertices);
+		glTexCoord2f(0.0, 0.2,textcord);glVertex3f( 0.0, 0.3, 0.3,vertices);
+		glTexCoord2f(1.0, 0.2,textcord);glVertex3f( 0.3, 0.0, 0.0,vertices);
 		glTexCoord2f(0.0, 1.0,textcord);glVertex3f( 0.0, 0.0, -3.0,vertices);
 
-		glTexCoord2f(1.0, 0.0,textcord);glVertex3f( 0.0, 0.0, -3.0,vertices);
-		glTexCoord2f(0.0, 1.0,textcord);glVertex3f( -1.0, 0.0, 0.0,vertices);
-		glTexCoord2f(0.0, 0.0,textcord);glVertex3f( 1.0, 0.0, 0.0,vertices);
+		glTexCoord2f(1.0, 0.2,textcord);glVertex3f( 0.0, 0.0, -3.0,vertices);
+		glTexCoord2f(0.0, 1.0,textcord);glVertex3f( -0.3, 0.0, 0.0,vertices);
+		glTexCoord2f(0.0, 0.2,textcord);glVertex3f( 0.3, 0.0, 0.0,vertices);
 }
 
 

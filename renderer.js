@@ -11,6 +11,20 @@ Renderer.prototype.AddRenderer=function(render)
 this._toRender.push(render);
 this._count++;
 }
+Renderer.prototype.RemoveRenderer=function(render)
+{
+var el=null;
+el=this._toRender.filter(function (el){return el.get()!==render.get()});
+if(el!=null){
+this._toRender=el;
+	this._count--;
+	console.log("removed");
+	}
+}
+
+
+
+
 Renderer.prototype.RenderScene=function()
 {
 var index;
