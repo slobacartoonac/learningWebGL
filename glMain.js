@@ -51,6 +51,7 @@ if (window.DeviceOrientationEvent) {
           
           // alpha is the compass direction the device is facing in degrees
           z_rot = eventData.alpha
+		  alert("happaning"+x_rot+y_rot+z_rot);
           }, false);
 }
 else alert("DeviceOrientation is not supported");
