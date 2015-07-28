@@ -234,13 +234,14 @@ podloga(vertices2,cords2);
 		avionce.SetTexture("test.gif");
 		avionce2.SetTexture("slika2.bmp");
 		someRendable2.SetPosition(0,-490,-400);
+		someRendable.SetPosition(0,-2,0);
 		someRendable2.SetRotation(0,1,0);
 		
 		someRendable.SetMeshObject(avionce);
 		someRendable2.SetMeshObject(avionce2);
-		//renderer.AddRenderer(someRendable);
+		renderer.AddRenderer(someRendable);
 		renderer.AddRenderer(someRendable2);
-		player.AddRendable(someRendable2);
+		player.AddRendable(someRendable);
    // gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(colors), gl.STATIC_DRAW);
     //triangleVertexColorBuffer.itemSize = 4;
    // triangleVertexColorBuffer.numItems = 24;
